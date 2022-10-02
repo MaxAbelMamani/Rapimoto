@@ -15,10 +15,13 @@ public class PlayerControl : MonoBehaviour
 
     //Variables de Camara
     public Camera mainCamera;
-    public KeyCode switchKey;
-    // Start is called before the first frame update
 
     void Start()
+    {
+        
+    }
+
+    public void OnTriggerEnter(Collider other)
     {
         
     }

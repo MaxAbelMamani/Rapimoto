@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    public GameObject Envio;
+    public GameObject generador01;
+    public GameObject Entrega;
+    public GameObject generador02;
+    public bool entrega;
     //VARIABLES DE MANEJO
     //VELOCIDAD DEL VEHICULO
     public float speed = 5.0f;
@@ -15,7 +20,6 @@ public class PlayerControl : MonoBehaviour
 
     //Variables de Camara
     public Camera mainCamera;
-    public KeyCode switchKey;
     // Start is called before the first frame update
 
     void Start()
@@ -36,5 +40,19 @@ public class PlayerControl : MonoBehaviour
         //Modificar el giro
         transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
         // transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Envio"))
+        {
+            Destroy(other.gameObject);
+            Instantiate(Entrega, generador02.transform.position, generador02.transform.rotation);
+        }
+        if (other.CompareTag("Entrega"))
+        {
+            Destroy(other.gameObject);
+            Instantiate(Envio, generador01.transform.position, generador01.transform.rotation);
+      
+        }
     }
 }
